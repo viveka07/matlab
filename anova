@@ -1,0 +1,35 @@
+#load the built-in data
+data("PlantGrowth")
+#H0 : mu(ctrl) = mu(trt1) =mu(trt2)
+#H1 : atleast one mean is diff
+#explore data
+head(PlantGrowth) #first 6 line of data
+summary(PlantGrowth)
+#level
+levels(PlantGrowth$group)
+#extract variables
+weight <- PlantGrowth$weight
+group <- PlantGrowth$group
+weight
+group
+
+#mean
+mean(weight[group==ctrl]) #time consuming
+tapply(weight, group, mean)
+tapply(weight, group, length)
+#plot
+boxplot(weight~group, main="Plant vs Weight",xlab="Plants",ylab="Weights",col=rainbow(3))
+#anova
+aov(weight~group)
+#F=(sum of square of group/df of group)/(sum of squares of residuals/df of resisual)
+#F=(3.76634/2)/(10.49209/27) = 4.846088
+results = aov(weight~group)
+summary(results)
+#F is less than 0.05, significant. there is atleast one group of plants has different mean
+#post hoc test
+TukeyHSD(results) #default confidence level : 95%
+TukeyHSD(results, conf.level = 0.99)
+#p-value (or) equality of variance
+bartlett.test(weight~group)
+#p-value < 0.05 --> reject null hyp
+#RESULT : WE FAIL TO REJECT NULL VALUES
