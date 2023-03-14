@@ -1,0 +1,55 @@
+1.In LPP given obj fn and constraints to either min or max it
+3 2 180
+X1 x2
+2 1 <= 100
+1 1 <= 80
+X1 x2
+20 60
+-----
+library(lpSolve)
+o=c(3,2)
+c=matrix(c(2,1,1,1),nrow=2,byrow=T)
+d=c('<=','<=')
+r=c(100,80)
+//before solving use lpSolve ->require(lpSolve)
+sol=lpSolve::lp("max",o,c,d,r,compute.sens=T)
+sol$solution
+----------------------------------------------
+2.transportation model
+require(lpSolve)
+x=c(10,13,8,15,12,16,11,17,9)
+xx=matrix(x,nrow=3,ncol=3,byrow=T)
+r=c(100,200,300)
+c=c(150,250,200)
+rs=c('=','=','=')
+cs=rep('=',3)
+sol=lp.transport(xx,direction="min",rs,r,cs,c)
+sol$solution 
+
+----------------------------------------------
+3.assignment model
+x=c(2,7,7,5,7,9,5,9,7,3,8,8,5,6,10,7)
+xx=matrix(x,4,4,byrow=T)
+sol=lp.assign(xx,direction='min')
+sol$solution
+
+
+----------------------------------------------
+4.simplex
+
+Max z=200x + 150y + 150z
+Constraints
+10x+3y+10x<=100
+5x+5y+5z<=60
+----
+require(lpSolve)
+o=c(200,150,150)
+c1=c(10,3,10)
+c2=c(5,5,5)
+r1=100
+r2=60
+install.packages("optimsimplex") 
+library(optimsimplex)
+library(boot)
+simplex(a=o,A1=rbind(c1,c2),b1=c(r1,r2),maxi=T)
+
