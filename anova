@@ -33,3 +33,15 @@ TukeyHSD(results, conf.level = 0.99)
 bartlett.test(weight~group)
 #p-value < 0.05 --> reject null hyp
 #RESULT : WE FAIL TO REJECT NULL VALUES
+
+----------------------------------------
+2.chi-squared
+library(MASS)
+print(str(survey))
+  
+stu_data = data.frame(survey$Smoke,survey$Exer)           
+stu_data = table(survey$Smoke,survey$Exer)                
+print(stu_data)
+  
+print(chisq.test(stu_data))
+
