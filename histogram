@@ -1,0 +1,8 @@
+home_data <- read.csv("https://raw.githubusercontent.com/rashida048/Datasets/master/home_data.csv")[ ,c('price', 'condition')]
+hist(home_data$price)
+abline(v = mean(home_data$price), col='red', lwd = 3)
+---Plotting probability densities instead of counts---
+hist(home_data$price, probability = TRUE)
+abline(v = mean(home_data$price), col='red', lwd = 3)
+lines(density(home_data$price), col = 'green', lwd = 3)
+-------
