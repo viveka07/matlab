@@ -1,3 +1,6 @@
 linearregression
 multipleregression  //textfileread
 logisticregression  //summaryaccess
+model               //lpp,trans,assign,simplex
+anova               //anova,chisq
+histogram
