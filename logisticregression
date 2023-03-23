@@ -1,0 +1,22 @@
+
+input <- mtcars[,c("am","cyl","hp","wt")]
+
+am = glm(formula = am ~ cyl + hp + wt, data = input, family = binomial)
+summary_model<-summary(am)
+
+
+for(i in 1:4){
+  s=summary_model$coefficients[i,4]
+if(s<0.05){
+  print(s);
+  rowname <- rownames(summary_model$coefficients)[i];
+  print(paste("The",rowname));
+  print("is significant")
+}
+else{
+  print(s);
+  rowname <- rownames(summary_model$coefficients)[i];
+  print(paste("The",rowname));
+  print("is insignificant")
+}
+}
