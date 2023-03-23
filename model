@@ -3,6 +3,7 @@
 X1 x2
 2 1 <= 100
 1 1 <= 80
+
 X1 x2
 20 60
 -----
@@ -15,7 +16,7 @@ r=c(100,80)
 sol=lpSolve::lp("max",o,c,d,r,compute.sens=T)
 sol$solution
 ----------------------------------------------
-2.transportation model
+2.transportation model    //supply and demand
 require(lpSolve)
 x=c(10,13,8,15,12,16,11,17,9)
 xx=matrix(x,nrow=3,ncol=3,byrow=T)
