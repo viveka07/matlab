@@ -6,3 +6,8 @@ hist(home_data$price, probability = TRUE)
 abline(v = mean(home_data$price), col='red', lwd = 3)
 lines(density(home_data$price), col = 'green', lwd = 3)
 -------
+barplot
+x <- c("A", "B", "C", "D")
+y <- c(2, 4, 6, 8)
+
+barplot(y, names.arg = x, col = "red")
